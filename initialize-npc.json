@@ -1,0 +1,64 @@
+{
+  "name": "initializeNPC",
+  "description": "Creates and defines a non-player character. If applicable, uses a real-world historical figure. Attaches image reference, sets personality and memory logic, and stores the NPC for future use.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "name": { "type": "string" },
+      "role": { "type": "string" },
+      "setting": { "type": "string" },
+      "gender": { "type": "string", "enum": ["male", "female", "nonbinary", "unspecified"] },
+      "ageRange": { "type": "string", "enum": ["child", "teen", "young adult", "adult", "elder"] },
+      "dispositionToPlayer": { "type": "string", "enum": ["friendly", "neutral", "suspicious", "hostile", "romantically interested"] },
+      "storyOverridesHistory": { "type": "boolean", "default": false },
+      "forceHistoricalMatch": { "type": "boolean", "default": true },
+      "trackForFutureUse": { "type": "boolean", "default": true },
+      "referenceImage": { "type": "string" },
+      "personalityArchetype": {
+        "type": "string",
+        "enum": ["loyalist", "opportunist", "idealist", "cynic", "romantic", "hothead", "stoic", "manipulator", "mentor", "outcast"]
+      },
+      "personalityTraits": {
+        "type": "array",
+        "items": { "type": "string" }
+      },
+      "culturalOrigin": { "type": "string" },
+      "speechStyle": {
+        "type": "object",
+        "properties": {
+          "formality": { "type": "string", "enum": ["formal", "casual", "blunt", "intimate", "rude"] },
+          "cadence": { "type": "string", "enum": ["slow", "measured", "fast", "erratic", "rhythmic"] },
+          "vocabulary": { "type": "string", "enum": ["simple", "educated", "regional slang", "poetic", "crude"] }
+        },
+        "required": ["formality", "cadence", "vocabulary"]
+      },
+      "moralAlignment": {
+        "type": "string",
+        "enum": ["altruistic", "neutral", "self-serving", "chaotic", "principled", "corrupted"]
+      },
+      "dialogueBehavior": {
+        "type": "object",
+        "properties": {
+          "openness": { "type": "string", "enum": ["guarded", "open", "indirect", "provocative", "manipulative"] },
+          "responseStyle": { "type": "string", "enum": ["direct", "circular", "storytelling", "evasive", "questioning"] },
+          "defaultTone": { "type": "string", "enum": ["warm", "cold", "sarcastic", "neutral", "tense", "playful"] }
+        },
+        "required": ["openness", "responseStyle", "defaultTone"]
+      },
+      "emotionalMemory": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "event": { "type": "string" },
+            "emotion": { "type": "string" },
+            "impact": { "type": "string" }
+          },
+          "required": ["event", "emotion", "impact"]
+        }
+      },
+      "canEvolve": { "type": "boolean", "default": true }
+    },
+    "required": ["role", "setting", "personalityArchetype", "personalityTraits", "culturalOrigin", "speechStyle", "moralAlignment", "dialogueBehavior"]
+  }
+}
